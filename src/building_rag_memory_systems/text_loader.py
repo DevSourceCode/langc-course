@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader, PyPDFLoader
+from langchain_core.documents import Document
 
 load_dotenv()
 
@@ -20,8 +21,32 @@ def load_text_file(file_path: str):
     print(documents)
 
 
+def document_structure():
+    document = Document(
+        page_content="This is a sample document.",
+        metadata={"source": "sample_source.txt"}
+    )
+    print(f"Document content: {document.page_content}")
+    print(f"Document metadata: {document.metadata}")
+
+
+def pdf_loaders(pdf_path: str) -> None:
+    """
+    Placeholder for PDF loaders function.
+    """
+    loader = PyPDFLoader(pdf_path)
+    documents = loader.load()
+
+    print(f"Loaded {len(documents)} documents")
+    for doc in documents:
+        print(doc.page_content)
+
+
 if __name__ == "__main__":
     # Example usage
     # Replace with your text file path
-    file_path = "C:\\Working Folder\\Repositories\\langc-course\\src\\building_rag_memory_systems\\sample_text.txt"
-    load_text_file(file_path)
+    # file_path = "C:\\Working Folder\\Repositories\\langc-course\\src\\building_rag_memory_systems\\sample_text.txt"
+    # load_text_file(file_path)
+    # document_structure()
+    pdf_loaders(
+        "C:\\Working Folder\\Repositories\\langc-course\\src\\building_rag_memory_systems\\docs\\receipt-on-demand.pdf")

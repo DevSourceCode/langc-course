@@ -11,12 +11,16 @@ dependencies = [
     "langchain-core>=1.7.3",
     "langchain-openai>=1.7.3",
     "langgraph>=1.2.19",
+    "pypdf>=7.0.0",
     "python-dotenv>=1.2.4",
 ]
 
 [project.scripts]
-langc-course = "langc_course:main"
+langc-course = "foundation_langc_course:main"
 
 [build-system]
 requires = ["uv_build>=0.12.10,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = ["foundation_langc_course", "building_rag_memory_systems"]
